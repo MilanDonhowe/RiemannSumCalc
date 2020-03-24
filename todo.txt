@@ -1,0 +1,3 @@
+-> FIX BUGS
+For some reason when a and b are only off by a sign the app crashes "-1 1" for instance
+-> LEARN MORE ABOUT GRADLE
