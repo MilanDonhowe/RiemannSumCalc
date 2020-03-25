@@ -17,17 +17,17 @@ public class Arithmetic {
 
     // Function divides expression into a list of tokens I.E. ("5+4") -> [5, +, 4]
     public static ArrayList<String> setupList (String expr){
-
         ArrayList<String> tokens = new ArrayList<String>();
-        tokens.add("E");// token denotes empty list
-        Set<Character> delimiters = new HashSet<Character>(Arrays.asList('+','-','*','/','^','(', ')', 'E'));
+        tokens.add("#");// token denotes empty list
+        Set<Character> delimiters = new HashSet<Character>(Arrays.asList('+','-','*','/','^','(', ')', '#'));
         int index = 0;
         String currentToken = "";
+        //System.out.println(delimiters.contains('E'));
         while (index < expr.length()){
             char currentLetter = expr.charAt(index);
             if(delimiters.contains(currentLetter)){
                 // Try and parse out negative numbers like -5 
-                if (((currentLetter == '-') && (currentToken.isEmpty())) && 
+                if (((currentLetter == '-') && (currentToken.isEmpty() || currentToken.charAt(currentToken.length()-1) == 'E')) && 
                 (delimiters.contains(tokens.get(tokens.size()-1).charAt(0)))){
                     currentToken += currentLetter;
                 } else {
@@ -43,12 +43,12 @@ public class Arithmetic {
 
         if (currentToken != "") tokens.add(currentToken);
 
-        tokens.remove(0); // remove "E" token
+        tokens.remove(0); // remove "#" token
         
         // Loop used for debugging
-        //for (String tok : tokens){
-        //    System.out.println(tok);
-        //}
+        for (String tok : tokens){
+            System.out.println(tok);
+        }
 
         return tokens;
     }

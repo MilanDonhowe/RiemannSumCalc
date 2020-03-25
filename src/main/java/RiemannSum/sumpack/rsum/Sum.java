@@ -13,12 +13,14 @@ public abstract class Sum {
         this.a = a;
         this.b = b;
         this.func = func;
-        this.dx = ((double)(b-a)) / n;
+        this.dx = ((double)(b-a)) / ((double)n);
+        System.out.println(dx);
     }
 
     protected double functionParse(Double x) {
         // High-tech function evaluation (string replacement ftw)
         String expression = func.replace("x", x.toString());
+        //System.out.println(expression);
         return Arithmetic.eval(expression);
     }
     
